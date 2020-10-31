@@ -1,0 +1,31 @@
+server:
+  port: 8080
+spring:
+  # 数据库相关设置
+  datasource:
+    url: jdbc:mysql://localhost:3306/test_lable?autoReconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+    #数据源如果不设置，使用默认的Tomcat数据源
+    druid:
+      #初始化大小，最小，最大
+      initial-size: 8
+      max-active: 50
+      min-idle: 8
+      #配置获取连接等待超时的时间（毫秒）
+      max-wait: 6000
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 6000
+      #配置监控统计拦截的filters，去掉后面监控界面sql将无法统计，'wall'用于防火墙
+      #filters: stat,wall,log4j
+      #通过connectProperties属性来打开mergeSql功能，
+      connect-properties: druid.stat.mergeSql=true;druid.sta.slowSqlMillis=1000
+
+mybatis:
+    mapper-locations: classpath:/com/example/demo/mapper/*.xml
+    configuration:
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+      map-underscore-to-camel-case: true
+
+
+
